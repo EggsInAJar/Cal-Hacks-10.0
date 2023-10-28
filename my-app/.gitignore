@@ -23,7 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+convex/_generated
 .env
-.env.local
-
 .env.local
