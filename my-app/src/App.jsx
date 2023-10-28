@@ -9,25 +9,48 @@ import { SignInButton, SignOutButton } from "@clerk/clerk-react";
 import { useConvexAuth } from "convex/react";
 import { useUser } from "@clerk/clerk-react";
 import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
+import RestaurantMap from "./components/RestaurantMap";
 
 function App() {
+  const { isLoading, isAuthenticated } = useConvexAuth();
+  const { user } = useUser();
+
   const tasks = useQuery(api.tasks.get);
   const findRestaurants = useAction(api.findRestaurants.findRestaurants);
 
   const [restaurants, setRestaurants] = useState([]);
   const [count, setCount] = useState(0)
-  const { isLoading, isAuthenticated } = useConvexAuth();
-  const { user } = useUser();
+  const [location, setLocation] = useState({})
 
 
   useEffect(() => {
-    async function fetchData() {
-      const result = await findRestaurants({location: '40.748817,-73.985428', radius: 500});
-      setRestaurants(result);
-    }
-  
-    fetchData();
+    // Get User Location
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        setLocation(pos);
+      },
+      () => {
+        // Handle location error
+        console.error('Error getting location');
+        setLocation({}); // Set default location to empty
+      }
+    );
   }, []);
+
+  useEffect(() => {
+    // Find Restaurants Based on Location
+    async function fetchData() {
+      console.log('fetching data', location)
+      const result = await findRestaurants({location: `${location.lat}, ${location.lng}`, radius: 500});
+      setRestaurants(result);
+      console.log('data result', result)
+    }
+    fetchData();
+  }, [location]);
 
   return (
     <>
@@ -35,7 +58,7 @@ function App() {
       <SignInButton mode="modal" />
       <SignOutButton mode="modal" />
 
-      {restaurants.length > 0 && restaurants.map(restaurant => (<li key={restaurant.place_id}>{restaurant.name}</li>))}
+      {restaurants.map(restaurant => (<li key={restaurant.place_id}>{restaurant.name}</li>))}
       
       {isAuthenticated ? "Logged in" : "Logged out or still loading"}
     </div>
@@ -59,6 +82,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <RestaurantMap location={location} restaurants={restaurants}></RestaurantMap>
     </>
   )
 }
