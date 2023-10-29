@@ -17,6 +17,7 @@ function App() {
 
   const tasks = useQuery(api.tasks.get);
   const findRestaurants = useAction(api.findRestaurants.findRestaurants);
+  const getPreferredRestaurants = useAction(api.controllers.suggestions_controllers.getPreferredRestaurants);
 
   const [restaurants, setRestaurants] = useState([]);
   const [count, setCount] = useState(0)
@@ -39,15 +40,15 @@ function App() {
         setLocation({}); // Set default location to empty
       }
     );
+
+    console.log(getPreferredRestaurants({user_id: "4efwrqe9gpmhxew40rcqqctm9k5zecg"}))
   }, []);
 
   useEffect(() => {
     // Find Restaurants Based on Location
     async function fetchData() {
-      console.log('fetching data', location)
       const result = await findRestaurants({location: `${location.lat}, ${location.lng}`, radius: 500});
       setRestaurants(result);
-      console.log('data result', result)
     }
     fetchData();
   }, [location]);
@@ -57,6 +58,7 @@ function App() {
      <div className="App">
       <SignInButton mode="modal" />
       <SignOutButton mode="modal" />
+
 
       {restaurants.map(restaurant => (<li key={restaurant.place_id}>{restaurant.name}</li>))}
       

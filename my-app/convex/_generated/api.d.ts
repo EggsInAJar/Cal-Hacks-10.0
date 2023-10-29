@@ -14,7 +14,6 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
-import type * as controllers_dalle_controllers from "../controllers/dalle_controllers";
 import type * as controllers_suggestions_controllers from "../controllers/suggestions_controllers";
 import type * as findRestaurants from "../findRestaurants";
 import type * as preferences_general from "../preferences/general";
@@ -32,7 +31,6 @@ import type * as users_preferences from "../users/preferences";
  * ```
  */
 declare const fullApi: ApiFromModules<{
-  "controllers/dalle_controllers": typeof controllers_dalle_controllers;
   "controllers/suggestions_controllers": typeof controllers_suggestions_controllers;
   findRestaurants: typeof findRestaurants;
   "preferences/general": typeof preferences_general;
