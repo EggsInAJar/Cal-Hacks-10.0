@@ -61,23 +61,42 @@ async function getPreferredRestaurants(userQuery: string): Promise<string> {
 // Helper
 
 export const getUserPreferences = query({
-  args: { userId: v.id("users") },
-  handler: async (ctx, args) => {
-    const user = await ctx.db
-      .query("users")
-      .filter((q) => q.eq(q.field("id"), args.userId))
-      .take(1);
+    args: { user_id: v.id("users") },
+    handler: async (ctx, args) => {
+      // Fetch user by ID
+      const user = await ctx.db
+        .query("users")
+        .filter((q) => q.eq(q.field("_id"), args.user_id))
+        .take(1);
+  
+      if (!user || user.length === 0) {
+        return null;
+      }
+  
+      // Use the _id from the fetched user in the next query
+      const user_id_from_first_query = user[0]._id;
+  
+      const preferences = await ctx.db
+        .query("preferences")
+        .filter((q) => q.eq(q.field("userId"), user_id_from_first_query))
+        .take(1);
+  
+      if (!preferences || preferences.length === 0) {
+        return null; 
+      }
+  
+      return {
+        cuisinePreferences: preferences[0].cuisine, 
+        priceRangePreference: preferences[0].priceRange,
+        favoriteRestaurants: preferences[0].favoriteRestaurants,
+        favoriteFoods: preferences[0].favoriteFoods,
+        dietaryRestrictions: preferences[0].dietaryRestrictions,
+        dislikedFoods: preferences[0].dislikedFoods
+      };
+    },
+  });
 
-    if (!user || user.length === 0) {
-      return null;
-    }
-
-    return {
-      cuisinePreferences: user[0].cuisinePreferences,
-      favoriteFoods: user[0].favoriteFoods,
-    };
-  },
-});
+  
 
 
 
