@@ -68,7 +68,7 @@ function Preferences() {
     event.preventDefault();
     // Process the form data here (adding preferences to database)
     const preferenceData = {
-      userId: '4dk9hzefva59p7j0kk3tgmmy9k5nsw8',
+      userId: '"4c50dkb5m40r7vv3km1ydpff9k5m2hr"',
       cuisine: selectedCuisines.join(', '),
       priceRange: `${priceRange.min}-${priceRange.max}`,
       favoriteRestaurants: ['chipotle', 'mcdonalds'],
