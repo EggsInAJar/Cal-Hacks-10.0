@@ -1,0 +1,115 @@
+.cardBox {
+  width: 60%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  padding-left: 10px;  
+  margin-top: 8px;
+  margin-left: 1.5%;
+  margin-bottom: 8px;
+  background-color: white;
+  top: 168px;
+  z-index: 1;
+  position: relative;
+}
+
+.cardBox:hover .additionalCard {
+  display: block; /* Show the additional card on hover */
+}
+
+.additionalCard {
+  display: none; /* Hide the additional card by default */
+  position: absolute;
+  top: 0;
+  left: 100%; /* Position to the right of the original card */
+  width: 100%; /* Same width as the original card */
+  height: 52vh;
+  background-color: #f9f9f9; /* Background color, adjust as needed */
+  border-radius: 6%;
+  z-index: 10;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Optional shadow */
+}
+
+/* .gridRow {
+  display: flex;
+}
+
+.gridColumn {
+  flex: 1;
+  padding: 10px;
+}
+
+.gridColumn img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.gridColumn p {
+  text-align: center;
+  margin-top: 5px;
+} */
+
+.additionalContent {
+  display: grid;
+  grid-template-columns: 1fr, 1fr; /* 2x2 layout */
+  gap: 5px; /* Space between images */
+  padding: 10px; /* Padding around the content */
+}
+
+.additionalContent img {
+  width: 100%; /* Full width */
+  height: 34vh; /* Maintain aspect ratio */
+  border-radius: 6%; /* Rounded corners, optional */
+}
+
+.additionalContent p {
+  text-align: center; /* Center the text */
+  margin-top: 5px; /* Space above the text */
+}
+
+
+/* .cardBox {
+  width: 60%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  position: relative;
+  padding-left: 10px;  
+  margin-top: 8px;
+  margin-left: 1.5%;
+  margin-bottom: 8px;
+  background-color: white;
+  top: 168px;
+  z-index: 1;
+}
+.cardBox:hover .aditionalCard {
+  display: block;  // Show the additional card on hover
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+*/
+  
+.resName {
+  font-size: 20px;
+  color: black;
+}
+  
+.resImg {
+  width: 80%;
+  border-radius: 25%;
+  margin-top: 8%;
+}
+  
+.cus {
+  color: black;
+}
+  
+.des {
+  font-size: 12px;
+  color: grey;
+  word-wrap: break-word;
+}
