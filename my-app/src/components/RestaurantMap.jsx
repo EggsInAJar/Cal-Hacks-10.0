@@ -74,7 +74,7 @@ function MapComponent(props) {
   }, [map]);
 
   return (
-      <div className = "map" id="map"></div>
+      <div className="map" id="map"></div>
   );
 }
 

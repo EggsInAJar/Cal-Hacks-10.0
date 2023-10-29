@@ -59,7 +59,31 @@ function App() {
     {
       name: 'The Fancy Fork',
       cuisine: 'Italian',
-      description: 'An exquisite Italian experience with a modern twist.',
+      description: 'An exquisite Italian experience with a modern twist! sdkbfsoidnvpzklxjnvpkasjdnvkxzjndfvlkdzxjcvn lkczxjvnlkdzjx.',
+      image: RestaurantImage,
+    },
+    {
+      name: 'Sushi Hub',
+      cuisine: 'Japanese',
+      description: 'Fresh and authentic sushi crafted by experienced chefs.',
+      image: RestaurantImage,
+    },
+    {
+      name: 'Curry Palace',
+      cuisine: 'Indian',
+      description: 'Aromatic Indian dishes that bring the flavors of the East.',
+      image: RestaurantImage,
+    },
+    {
+      name: 'Cur Pal',
+      cuisine: 'Indi',
+      description: 'Aromatic dishes that bring the flavors of the East.',
+      image: RestaurantImage,
+    },
+    {
+      name: 'The Fancy Fork',
+      cuisine: 'Italian',
+      description: 'An exquisite Italian experience with a modern twist! sdkbfsoidnvpzklxjnvpkasjdnvkxzjndfvlkdzxjcvn lkczxjvnlkdzjx.',
       image: RestaurantImage,
     },
     {
@@ -110,17 +134,18 @@ function App() {
 
 
       <Authenticated>
+        <div className = "mapBackground">
+          <RestaurantMap location={location} restaurants={restaurants}></RestaurantMap>
+        </div>
         <div className='parent'>
           <div className='leftSide'>
-            {sampleData.map((item, index) => (
-              <RestaurantCard key={index} item={item} />
-            ))}
+            <div className='scroll'>
+              {sampleData.map((item, index) => (
+                <RestaurantCard key={index} item={item} />
+              ))}
+            </div>
           </div>
-        <div className = 'rightSide'>
-          <RestaurantMap location={location} restaurants={restaurants}></RestaurantMap>
-          {/* <div className = 'map'>
-          </div> */}
-        </div>
+        <div className = 'rightSide'></div>
         <div className = 'spacer'>
           
         </div>
