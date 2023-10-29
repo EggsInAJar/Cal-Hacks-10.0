@@ -45,8 +45,6 @@ function App() {
         setLocation({}); // Set default location to empty
       }
     );
-
-    console.log(getPreferredRestaurants({user_id: "4efwrqe9gpmhxew40rcqqctm9k5zecg"}))
   }, []);
 
   useEffect(() => {
@@ -60,29 +58,36 @@ function App() {
   }, [location]);
 
   useEffect(() => {
-    console.log('entered')
-    let card = [];
-    for (let i = 0; i < restaurants.length; i++) {
-      let temp = {name: restaurants[i].name};
-
-      try {
-      const photoReference = restaurants[i].photos[0].photo_reference;
-      console.log(photoReference)
-      const maxWidth = 200;  // You can specify the desired width of the image
+    async function fetchData() {
+      let preferredRestaurants = await getPreferredRestaurants({user_id: "4efwrqe9gpmhxew40rcqqctm9k5zecg", restaurants: restaurants.map(obj => obj.name)});
       
-      temp.image = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxWidth}&photoreference=${photoReference}&key=AIzaSyC2Lp98v2BVcvGfVTKA3SUYqIrED86_F6E`;
-      } catch (error) {
-        temp.image = RestaurantImage;
+      console.log('entered')
+      let card = [];
+      for (let i = 0; i < restaurants.length; i++) {
+        let temp = {name: restaurants[i].name};
+
+        try {
+        const photoReference = restaurants[i].photos[0].photo_reference;
+        console.log(photoReference)
+        const maxWidth = 200;  // You can specify the desired width of the image
+        
+        temp.image = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxWidth}&photoreference=${photoReference}&key=AIzaSyC2Lp98v2BVcvGfVTKA3SUYqIrED86_F6E`;
+        } catch (error) {
+          temp.image = RestaurantImage;
+        }
+
+        temp.description = restaurants[i].vicinity;
+
+        temp.cuisine = "$".repeat(restaurants[i].price_level);
+
+        card.push(temp);
       }
+      setCardInfo(card);
+      console.log(card)
 
-      temp.description = restaurants[i].vicinity;
-
-      temp.cuisine = "$".repeat(restaurants[i].price_level);
-
-      card.push(temp);
+      console.log(getPreferredRestaurants({user_id: "4efwrqe9gpmhxew40rcqqctm9k5zecg", restaurants: restaurants.map(obj => obj.name)}))
     }
-    setCardInfo(card);
-    console.log(card)
+    fetchData();
   }, [restaurants]);
 
   const sampleData = [

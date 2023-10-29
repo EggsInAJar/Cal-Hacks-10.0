@@ -19,10 +19,12 @@ import { v } from "convex/values";
 // }
 
 export const getPreferredRestaurants = action({
-  args: { user_id: v.id("users") },
+  args: { user_id: v.id("users"), restaurants: v.array(v.string()) },
   handler: async (ctx, args) => {
+    const data = await ctx.runQuery(internal.controllers.suggestions_controllers.getUserPreferences, args);
+
     const API_ENDPOINT = 'https://api.openai.com/v1/chat/completions';
-    const API_KEY = "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"; // Will obscure this later
+    const API_KEY = "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"; // Will obscure this later
 
     const headers = new Headers({
         'Authorization': `Bearer ${API_KEY}`,
@@ -30,8 +32,10 @@ export const getPreferredRestaurants = action({
         'Accept': 'application/json'
     });
 
+    let mergedPreferences = data.cuisinePreferences.concat(data.favoriteFoods, data.favoriteRestaurants).join(', ');
+    let restaurantString = args.restaurants.join(', ');
     const messages = [
-        { role: "user", content: "Say this is a test!" }
+        { role: "user", content: `I like these cuisines/food/restaurants: ${mergedPreferences}. Select the top 10 restaurants you think would be best from this list: ${restaurantString}. Answer in a comma separated list and nothing else.` }
     ];
 
     try {
@@ -41,12 +45,12 @@ export const getPreferredRestaurants = action({
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",
                 messages: messages
-            })
+            }),
+            temperature: 0
         });
 
         const data = await response.json();
-        console.log(data);
-        const assistantMessage = data.choices[0].message.content;
+        const assistantMessage = data.choices[0].message.content.split(', ');
         return assistantMessage;
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -94,7 +98,7 @@ export const getPreferredRestaurants = action({
 // Helper
 
 export const getUserPreferences = internalQuery({
-    args: { user_id: v.id("users") },
+    args: { user_id: v.id("users"), restaurants: v.array(v.string()) },
     handler: async (ctx, args) => {
       // Fetch user by ID
       const user = await ctx.db
@@ -114,8 +118,6 @@ export const getUserPreferences = internalQuery({
         .filter((q) => q.eq(q.field("userId"), user_id_from_first_query))
         .take(1);
 
-      console.log("preferences", preferences);
-  
       if (!preferences || preferences.length === 0) {
         return null; 
       }
@@ -168,9 +170,8 @@ export const getUserPreferences = internalQuery({
           .take(1);
         output.favoriteRestaurants.push(temp[0].name);
       }
-      console.log(output);
 
-    return output;
+      return output;
     },
   });
 
