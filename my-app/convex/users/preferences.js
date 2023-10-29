@@ -5,7 +5,7 @@ import { v } from "convex/values";
 export const addUserPreferences = mutation({
   args: {
     userId: v.id("users"),
-    cuisine: v.string(),
+    cuisine: v.array(v.id("cuisines")),
     priceRange: v.string(),
     favoriteRestaurants: v.array(v.id("restaurants")),
     favoriteFoods: v.array(v.id("foods")),

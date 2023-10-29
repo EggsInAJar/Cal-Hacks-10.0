@@ -7,16 +7,12 @@ export const addUser = mutation({
     name: v.string(),
     email: v.string(),
     preferences: v.optional(v.id("preferences")),
-    groupId: v.optional(v.array(v.id("groups"))),
-    friends: v.optional(v.array(v.id("users"))),
   },
   handler: async (ctx, args) => {
     const newUser = {
       name: args.name,
       email: args.email,
       preferences: args.preferences,
-      groupId: args.groupId,
-      friends: args.friends
     };
 
     // Insert the new user into the 'users' table

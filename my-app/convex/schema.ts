@@ -19,7 +19,7 @@ export default defineSchema({
 
     preferences: defineTable({
         userId: v.optional(v.union(v.id("users"), v.null())),
-        cuisine: v.string(),
+        cuisine: v.array(v.id("cuisines")),
         priceRange: v.string(),
         favoriteRestaurants: v.array(v.id("restaurants")),
         favoriteFoods: v.array(v.id("foods")),
@@ -41,5 +41,9 @@ export default defineSchema({
     foods: defineTable({
         name: v.string(),
         cuisineType: v.optional(v.string()),
+    }),
+
+    cuisines: defineTable({
+        name: v.string(),
     }),
 })
