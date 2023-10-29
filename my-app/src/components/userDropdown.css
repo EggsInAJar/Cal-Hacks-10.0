@@ -1,0 +1,43 @@
+.user-button {
+    position: fixed;
+    left: 82%;
+    top: 7.2vh;
+    color: white;
+    font-size: 1vw;
+    z-index: 3;
+  }
+  
+  .user-button:hover {
+    cursor: pointer;
+    color: skyblue;
+  }
+    
+  .dropdown-menu-user {
+    position: fixed;
+    left: 81.7%;
+    top: 4.4vh;
+    color: white;
+    font-size: 0.9vw;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    border: 1px solid #ddd;
+    border-radius: 10%;
+    position: absolute; /* Position it relative to the parent */
+    z-index: 2;
+  }
+    
+  .dropdown-menu li a {
+    /* position: fixed; */
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    color: black;
+  }
+  
+  .dropdown-menu li a:hover {
+    background-color: #f1f1f1;
+    color: skyblue;
+    border-radius: 10%;
+  }

@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import './components/profileDropdown.css';
+import './components/userDropdown.css';
 import { useQuery } from "convex/react";
 import { useAction } from "convex/react";
 import { api } from "../convex/_generated/api";
@@ -14,6 +15,7 @@ import RestaurantCard from './components/restaurantcard';
 import RestaurantImage from './assets/restaurant.jpg';
 import RestaurantMap from "./components/RestaurantMap";
 import ProfileDropdown from './components/profileDropdown';
+import UserDropdown from './components/userDropdown';
 
 function App() {
   const { isLoading, isAuthenticated } = useConvexAuth();
@@ -229,6 +231,7 @@ function App() {
           <div className="title">
             Suggested Restaurants
             <ProfileDropdown />
+            <UserDropdown />
           </div>
         </div> 
       </Authenticated>
