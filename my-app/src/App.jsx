@@ -24,6 +24,7 @@ function App() {
   const getPreferredRestaurants = useAction(api.controllers.suggestions_controllers.getPreferredRestaurants);
 
   const [restaurants, setRestaurants] = useState([]);
+  const [cardInfo, setCardInfo] = useState([]);
   const [count, setCount] = useState(0)
   const [location, setLocation] = useState({})
 
@@ -53,9 +54,36 @@ function App() {
     async function fetchData() {
       const result = await findRestaurants({location: `${location.lat}, ${location.lng}`, radius: 500});
       setRestaurants(result);
+      console.log(result)
     }
     fetchData();
   }, [location]);
+
+  useEffect(() => {
+    console.log('entered')
+    let card = [];
+    for (let i = 0; i < restaurants.length; i++) {
+      let temp = {name: restaurants[i].name};
+
+      try {
+      const photoReference = restaurants[i].photos[0].photo_reference;
+      console.log(photoReference)
+      const maxWidth = 200;  // You can specify the desired width of the image
+      
+      temp.image = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxWidth}&photoreference=${photoReference}&key=AIzaSyC2Lp98v2BVcvGfVTKA3SUYqIrED86_F6E`;
+      } catch (error) {
+        temp.image = RestaurantImage;
+      }
+
+      temp.description = restaurants[i].vicinity;
+
+      temp.cuisine = "$".repeat(restaurants[i].price_level);
+
+      card.push(temp);
+    }
+    setCardInfo(card);
+    console.log(card)
+  }, [restaurants]);
 
   const sampleData = [
     {
@@ -142,7 +170,7 @@ function App() {
         <div className='parent'>
           <div className='leftSide'>
             <div className='scroll'>
-              {sampleData.map((item, index) => (
+              {cardInfo.map((item, index) => (
                 <RestaurantCard key={index} item={item} />
               ))}
             </div>
