@@ -36,7 +36,7 @@
 .leftSide {
   position: relative;
   width: 50%;
-  left: 0;
+  left: 0px;
 }
 
 .rightSide {

@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { useQuery } from "convex/react";
+import { useAction } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { SignInButton, SignOutButton } from "@clerk/clerk-react";
 import { useConvexAuth } from "convex/react";
@@ -10,12 +11,49 @@ import { useUser } from "@clerk/clerk-react";
 import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
 import RestaurantCard from './components/restaurantcard';
 import RestaurantImage from './assets/restaurant.jpg';
+import RestaurantMap from "./components/RestaurantMap";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const tasks = useQuery(api.tasks.get);
   const { isLoading, isAuthenticated } = useConvexAuth();
   const { user } = useUser();
+
+  const tasks = useQuery(api.tasks.get);
+  const findRestaurants = useAction(api.findRestaurants.findRestaurants);
+
+  const [restaurants, setRestaurants] = useState([]);
+  const [count, setCount] = useState(0)
+  const [location, setLocation] = useState({})
+
+
+  useEffect(() => {
+    // Get User Location
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        setLocation(pos);
+      },
+      () => {
+        // Handle location error
+        console.error('Error getting location');
+        setLocation({}); // Set default location to empty
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    // Find Restaurants Based on Location
+    async function fetchData() {
+      console.log('fetching data', location)
+      const result = await findRestaurants({location: `${location.lat}, ${location.lng}`, radius: 500});
+      setRestaurants(result);
+      console.log('data result', result)
+    }
+    fetchData();
+  }, [location]);
+
 
   const sampleData = [
     {
@@ -79,8 +117,9 @@ function App() {
             ))}
           </div>
         <div className = 'rightSide'>
-          <div className = 'map'>
-          </div>
+          <RestaurantMap location={location} restaurants={restaurants}></RestaurantMap>
+          {/* <div className = 'map'>
+          </div> */}
         </div>
         <div className = 'spacer'>
           
@@ -112,7 +151,7 @@ function App() {
           <div className="title">
             Suggested Restaurants
           </div>
-          {/* <SignOutButton mode="modal" /> */}
+          <SignOutButton mode="modal" />
         </div> 
       </Authenticated>
       {/* {isAuthenticated ? "Logged in" : "Logged out or still loading"} */}

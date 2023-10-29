@@ -1,0 +1,16 @@
+.rightSide {
+  width: 100%;
+  height: 100%;
+}
+
+.map {
+  background-color: grey;
+  width: 45%;
+  height: 60%;
+  position: fixed;
+  margin-top: 80px;
+}
+
+.spacer {
+  margin-right: 50%;
+}
