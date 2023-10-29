@@ -24,7 +24,7 @@ export const getPreferredRestaurants = action({
     const data = await ctx.runQuery(internal.controllers.suggestions_controllers.getUserPreferences, args);
 
     const API_ENDPOINT = 'https://api.openai.com/v1/chat/completions';
-    const API_KEY = "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"; // Will obscure this later
+    const API_KEY = "XXXXXXX"; // FILL OUT KEY HERE
 
     const headers = new Headers({
         'Authorization': `Bearer ${API_KEY}`,
@@ -50,6 +50,7 @@ export const getPreferredRestaurants = action({
         });
 
         const data = await response.json();
+        console.log(data)
         const assistantMessage = data.choices[0].message.content.split(', ');
         return assistantMessage;
     } catch (error) {
