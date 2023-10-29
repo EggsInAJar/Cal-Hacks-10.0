@@ -14,10 +14,11 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
-import type * as restaurants from "../restaurants";
 import type * as findRestaurants from "../findRestaurants";
+import type * as preferences_general from "../preferences/general";
+import type * as restaurants from "../restaurants";
 import type * as tasks from "../tasks";
-import type * as users_friends from "../users/friends";
+import type * as users_general from "../users/general";
 import type * as users_preferences from "../users/preferences";
 
 /**
@@ -29,10 +30,11 @@ import type * as users_preferences from "../users/preferences";
  * ```
  */
 declare const fullApi: ApiFromModules<{
-  restaurants: typeof restaurants;
   findRestaurants: typeof findRestaurants;
+  "preferences/general": typeof preferences_general;
+  restaurants: typeof restaurants;
   tasks: typeof tasks;
-  "users/friends": typeof users_friends;
+  "users/general": typeof users_general;
   "users/preferences": typeof users_preferences;
 }>;
 export declare const api: FilterApi<
