@@ -11,10 +11,15 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.27.1",
+    "@types/node": "^20.8.9",
     "bootstrap": "^5.3.2",
     "convex": "^1.5.1",
+    "fetch": "^1.1.0",
+    "node-fetch": "^3.3.2",
+    "openai": "^4.14.1",
     "million": "^2.6.4",
     "react": "^18.2.0",
+    "typescript": "^5.2.2",
     "react-bootstrap": "^2.9.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0"
@@ -27,6 +32,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "ts-node": "^10.9.1",
     "vite": "^4.4.5"
   }
 }

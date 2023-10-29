@@ -99,7 +99,8 @@
 }
   
 .resImg {
-  width: 80%;
+  width: 100px;
+  height: 100px;
   border-radius: 25%;
   margin-top: 8%;
 }

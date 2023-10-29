@@ -25,7 +25,7 @@ function MapComponent(props) {
         ]
       });
     
-      console.log('restaurants', props.restaurants)
+      // console.log('restaurants', props.restaurants)
       props.restaurants.forEach(restaurant => {
         const marker = new google.maps.Marker({
           position: restaurant.geometry.location,
