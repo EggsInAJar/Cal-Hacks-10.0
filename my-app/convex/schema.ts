@@ -14,25 +14,21 @@ export default defineSchema({
     users: defineTable({
         name: v.string(),
         email: v.string(),
-        preferences: v.id("preferences"),
-        groupId: v.array(v.id("groups")),
-        friends: v.array(v.id("users")), // Added field for friends
+        preferences: v.optional(v.id("preferences")),
     }),
 
     preferences: defineTable({
-        userId: v.union(v.id("users"), v.null()),
-        cuisine: v.string(),
+        userId: v.optional(v.union(v.id("users"), v.null())),
+        cuisine: v.array(v.id("cuisines")),
         priceRange: v.string(),
         favoriteRestaurants: v.array(v.id("restaurants")),
         favoriteFoods: v.array(v.id("foods")),
-        dietaryRestrictions: v.string(),
-        dislikedFoods: v.array(v.string()),
+        dietaryRestrictions: v.array(v.id("dietaryRestrictions")),
+        dislikedFoods: v.array(v.id("foods")),
     }),
 
-    groups: defineTable({
+    dietaryRestrictions: defineTable({
         name: v.string(),
-        description: v.string(),
-        members: v.array(v.id("users")), // Adjusted to always expect an array
     }),
 
     reviews: defineTable({
@@ -44,6 +40,10 @@ export default defineSchema({
 
     foods: defineTable({
         name: v.string(),
-        cuisineType: v.string(),
+        cuisineType: v.optional(v.string()),
+    }),
+
+    cuisines: defineTable({
+        name: v.string(),
     }),
 })
