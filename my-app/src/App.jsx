@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import './components/profileDropdown.css';
 import { useQuery } from "convex/react";
 import { useAction } from "convex/react";
 import { api } from "../convex/_generated/api";
@@ -12,6 +13,7 @@ import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
 import RestaurantCard from './components/restaurantcard';
 import RestaurantImage from './assets/restaurant.jpg';
 import RestaurantMap from "./components/RestaurantMap";
+import ProfileDropdown from './components/profileDropdown';
 
 function App() {
   const { isLoading, isAuthenticated } = useConvexAuth();
@@ -151,13 +153,6 @@ function App() {
         </div>
 
         </div>
-        {/* <div className="container">
-          <h2>Suggested Restaurants</h2>
-          <div className="restaurant-list">
-            <RestaurantCard name="Restaurant Tomato" cuisine="Italian" description="good food for all." />
-            <RestaurantCard name="Restaurant Potato" cuisine="Chinese" description="Description of place, etc." />
-          </div>
-        </div> */}
       </Authenticated>
 
      <div className="App">
@@ -175,8 +170,8 @@ function App() {
           </div>
           <div className="title">
             Suggested Restaurants
+            <ProfileDropdown />
           </div>
-          <SignOutButton mode="modal" />
         </div> 
       </Authenticated>
       {/* {isAuthenticated ? "Logged in" : "Logged out or still loading"} */}

@@ -18,7 +18,7 @@
   padding-left: 20px;
   color: #024606;
   font-size: 1vw;
-  z-index: 5;
+  z-index: 1;
   background: #799BD3;
   width: 100%;
   height: 10%;
@@ -31,11 +31,24 @@
   padding-left: 20px;
   color: white;
   font-size: 1.5vw;
-  z-index: 5;
+  z-index: 1;
   background: #799BD3;
   width: 100%;
   height: 50px;
 }
+
+/* .profile {
+  position: absolute;
+  left: 90%;
+  top: 9%;
+  color: white;
+  font-size: 1.5vw;
+  z-index: 2;
+}
+.profile:hover {
+  cursor: pointer;
+  color: skyblue;
+} */
 
 .parent {
   width: 100%;
@@ -59,10 +72,6 @@
   z-index: 0;
 }
 
-/* .scroll {
-  overflow-y: scroll;
-} */
-
 .cardBox {
   width: 60%;
   border-radius: 10px;
@@ -70,6 +79,7 @@
   justify-content: space-between;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   position: relative;
+  padding-left: 10px;
   margin-top: 8px;
   margin-left: 0%;
   margin-bottom: 8px;
@@ -106,51 +116,17 @@
   word-wrap: break-word;
 }
 
-/* .cardStyle {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 9%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  color: black;
-};
-
-.imageStyle {
-  width: 100px; 
-  height: 100px;
-  object-fit: cover;
-  border-radius: 25%;
-};
-
-.contentStyle {
-  flex: 1;
-  margin-left: 10px;
-  color: black;
+.signOutButton {
+  background-color: #f9f9f9;
+  color: red;
   text-align: left;
-};
-
-.restaurant-card:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer; */
-
-/* .restaurant-card button {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 1vw 2vw;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  position: relative;
-  left: -6vw;
-  top: 7vh;
 }
-
-.restaurant-card button:hover {
-  background-color: #0056b3;
-} */
+.signOutButton:hover {
+  background-color: #f1f1f1;
+  color: darkred;
+  border-radius: 10%;
+  border-color: none;
+}
 
 .logo {
   height: 6vw;

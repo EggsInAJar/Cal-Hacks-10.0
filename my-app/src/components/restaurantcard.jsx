@@ -20,28 +20,3 @@ function RestaurantCard({item}) {
 };
 
 export default RestaurantCard;
-
-
-// import React from 'react';
-// import '../App.css';
-
-// const RestaurantCard = ({ name, cuisine, description, imageSrc }) => {
-//   return (
-//     <div className="cardStyle">
-//       <img className="imageStyle" src={imageSrc} alt={name} />
-//       <div className="contentStyle">
-//         <h3>{name}</h3>
-//         <p>{cuisine}</p>
-//         <p>{description}</p>
-//       </div>
-//     </div>
-//   );
-// };
-// // {/* <div className="restaurant-card">
-// //       <div className="restaurant-info">
-// //         <p className="title">{name}</p>
-// //         <p className="cuisine">{cuisine}</p>
-// //         <p className="description">{description}</p>
-// //       </div> */}
-
-// export default RestaurantCard;
