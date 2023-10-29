@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import './Preferences.css';
-import { addUserPreferences } from '../../convex/users/preferences';
+// import { addUserPreferences } from '../../convex/users/preferences';
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
 function Preferences() {
+  const addUserPreferences = useMutation(api.users.preferences.addUserPreferences);
   const [selectedCuisines, setSelectedCuisines] = useState([]);
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
   const [favoriteFoods, setFavoriteFoods] = useState('');
   const [favoriteFoodsList, setFavoriteFoodsList] = useState([]);
+  const [favoriteRestaurants, setFavoriteRestaurants] = useState('');
+  const [favoriteRestaurantsList, setFavoriteRestaurantsList] = useState([]);
   const [dislikedFoods, setDislikedFoods] = useState('');
   const [dislikedFoodsList, setDislikedFoodsList] = useState([]);
   const [selectedDietaryRestrictions, setSelectedDietaryRestrictions] = useState([]);
@@ -63,16 +68,20 @@ function Preferences() {
     event.preventDefault();
     // Process the form data here (adding preferences to database)
     const preferenceData = {
-      userID: 'zkhan',
+      userId: '4dk9hzefva59p7j0kk3tgmmy9k5nsw8',
       cuisine: selectedCuisines.join(', '),
-      priceRange: '${priceRange.min}-$priceRange.max}',
+      priceRange: `${priceRange.min}-${priceRange.max}`,
       favoriteRestaurants: ['chipotle', 'mcdonalds'],
-      favoriteFoods: favoriteFoodsList.map(food => getIdFromName(food, 'foods')),
-      dietaryRestrictions: selectedDietaryRestrictions.map(restriction => getIdFromName(restriction, 'dietaryRestrictions')),
-      dislikedFoods: dislikedFoodsList.map(food => getIdFromName(food, 'foods'))
+      favoriteFoods: favoriteFoodsList,
+      dietaryRestrictions: selectedDietaryRestrictions,
+      dislikedFoods: dislikedFoodsList
     }
-    await addUserPreferences(preferenceData);
-
+    console.log(preferenceData);
+    try {
+      await addUserPreferences(preferenceData);
+    } catch (error) {
+      console.error("Error adding user preferences:", error);
+    }
     // console.log({
     //   selectedCuisines,
     //   priceRange,

@@ -22,7 +22,7 @@ export const getPreferredRestaurants = action({
   args: { user_id: v.id("users") },
   handler: async (ctx, args) => {
     const API_ENDPOINT = 'https://api.openai.com/v1/chat/completions';
-    const API_KEY = "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"; // Will obscure this later
+    const API_KEY = "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"; // Will obscure this later
 
     const headers = new Headers({
         'Authorization': `Bearer ${API_KEY}`,

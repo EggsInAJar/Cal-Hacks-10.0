@@ -31,6 +31,13 @@
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Optional shadow */
 }
 
+/* .selectRestaurant {
+    text-align: center;
+} */
+.selectRestaurant:hover {
+    background-color: #2f19f8;
+}
+
 /* .gridRow {
   display: flex;
 }

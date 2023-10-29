@@ -40,13 +40,9 @@ function RestaurantCard({item}) {
       <div className='additionalCard'>
         <div className='additionalContent'>
           <img src={item.image} alt="Description 1"/>
-          <p>Description 1</p>
-          {/* <img src={item.image} alt="Description 2"/>
-          <p>Description 2</p>
-          <img src={item.image} alt="Description 3"/>
-          <p>Description 3</p>
-          <img src={item.image} alt="Description 4"/>
-          <p>Description 4</p> */}
+          <p style={{color: 'black'}}>This restaurant is a great choice! </p>
+          <button className='selectRestaurant'> Select Restaurant </button>
+          {/* <a className = 'selectRestaurant' href = '/'>Select Restaurant</a> */}
         </div>
       </div>
     </div>
