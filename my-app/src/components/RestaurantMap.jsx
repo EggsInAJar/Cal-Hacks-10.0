@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './RestaurantMap.css'
 
 function MapComponent(props) {
   const [restaurants, setRestaurants] = useState([]);
@@ -73,7 +74,7 @@ function MapComponent(props) {
   }, [map]);
 
   return (
-    <div id="map" style={{width: '400px', height: '400px'}}></div>
+      <div className="map" id="map"></div>
   );
 }
 
