@@ -1,7 +1,7 @@
 .profile-button {
   position: fixed;
   left: 90%;
-  top: 9%;
+  top: 7vh;
   color: white;
   font-size: 1vw;
   z-index: 2;
@@ -15,7 +15,7 @@
 .dropdown-menu {
   position: fixed;
   left: 89vw;
-  top: 5.2vh;
+  top: 4.3vh;
   color: white;
   font-size: 1vw;
   list-style-type: none;

@@ -21,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Routes>
             {/* <Authenticated> */}
               <Route index element={<App />} />
+              <Route path="/home" element = {<App />} />
               <Route path="/preferences" element={<Preferences />} />
               <Route path="/friends" element={<Friends />} />
               <Route path="*" element={<NoPage />} />

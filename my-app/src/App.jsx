@@ -61,7 +61,7 @@ function App() {
     {
       name: 'The Fancy Fork',
       cuisine: 'Italian',
-      description: 'An exquisite Italian experience with a modern twist! sdkbfsoidnvpzklxjnvpkasjdnvkxzjndfvlkdzxjcvn lkczxjvnlkdzjx.',
+      description: 'An exquisite Italian experience with a modern twist!',
       image: RestaurantImage,
     },
     {
@@ -85,7 +85,7 @@ function App() {
     {
       name: 'The Fancy Fork',
       cuisine: 'Italian',
-      description: 'An exquisite Italian experience with a modern twist! sdkbfsoidnvpzklxjnvpkasjdnvkxzjndfvlkdzxjcvn lkczxjvnlkdzjx.',
+      description: 'An exquisite Italian experience with a modern twist!',
       image: RestaurantImage,
     },
     {
@@ -159,8 +159,22 @@ function App() {
       <Unauthenticated>
         <div className="unauthtitle">
           Eatinerary
+          <SignInButton>
+            <button className="signInButton">
+              Sign In
+            </button>
+          </SignInButton> 
+        <header className="App-header">
+          <div className="logo">
+            <div className="plate"></div>
+            <div className="fork"></div>
+            <div className="knife"></div>
+          </div>
+        </header>
+          {/* <header className="App-header">
+            <img src="path-to-your-logo.png" className="App-logo" alt="Eatinerary Logo" />
+          </header> */}
         </div>
-         <SignInButton mode="modal" /> 
       </Unauthenticated>
 
       <Authenticated> 

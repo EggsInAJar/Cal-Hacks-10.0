@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import './Preferences.css';
+import { addUserPreferences } from '../../convex/users/preferences';
 
 function Preferences() {
-  const goBackToMainPage = () => {
-    <a href="/"></a>
-  }
-
   const [selectedCuisines, setSelectedCuisines] = useState([]);
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
   const [favoriteFoods, setFavoriteFoods] = useState('');
@@ -45,39 +42,50 @@ function Preferences() {
     }
   };
 
-const handleFavoriteFoodsSubmit = (e) => {
-  console.log(e)
-  e.preventDefault();
-  if (favoriteFoods) {
-    setFavoriteFoodsList([...favoriteFoodsList, favoriteFoods]);
-    setFavoriteFoods('');
-  }
-};
+  const handleFavoriteFoodsSubmit = (e) => {
+    console.log(e)
+    e.preventDefault();
+    if (favoriteFoods) {
+      setFavoriteFoodsList([...favoriteFoodsList, favoriteFoods]);
+      setFavoriteFoods('');
+    }
+  };
 
-const handleDislikedFoodsSubmit = (e) => {
-  e.preventDefault();
-  if (dislikedFoods) {
-    setDislikedFoodsList([...dislikedFoodsList, dislikedFoods]);
-    setDislikedFoods('');
-  }
-};
+  const handleDislikedFoodsSubmit = (e) => {
+    e.preventDefault();
+    if (dislikedFoods) {
+      setDislikedFoodsList([...dislikedFoodsList, dislikedFoods]);
+      setDislikedFoods('');
+    }
+  };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Process the form data here (e.g., send to server, log in console, etc.)
-    console.log({
-      selectedCuisines,
-      priceRange,
-      favoriteFoods,
-      selectedDietaryRestrictions,
-      dislikedFoods
-    });
+    // Process the form data here (adding preferences to database)
+    const preferenceData = {
+      userID: 'zkhan',
+      cuisine: selectedCuisines.join(', '),
+      priceRange: '${priceRange.min}-$priceRange.max}',
+      favoriteRestaurants: ['chipotle', 'mcdonalds'],
+      favoriteFoods: favoriteFoodsList.map(food => getIdFromName(food, 'foods')),
+      dietaryRestrictions: selectedDietaryRestrictions.map(restriction => getIdFromName(restriction, 'dietaryRestrictions')),
+      dislikedFoods: dislikedFoodsList.map(food => getIdFromName(food, 'foods'))
+    }
+    await addUserPreferences(preferenceData);
+
+    // console.log({
+    //   selectedCuisines,
+    //   priceRange,
+    //   favoriteFoods,
+    //   selectedDietaryRestrictions,
+    //   dislikedFoods
+    // });
   };
 
   return (
     <div className="favorite-cuisine-form">
-      <button
-        onClick={() => goBackToMainPage}
+      <a
+        href = '/'
         style={{
           position: 'absolute',
           top: '10px',
@@ -89,7 +97,7 @@ const handleDislikedFoodsSubmit = (e) => {
         }}
       >
         Back to Main
-      </button>
+      </a>
       <h2>Your Preferences</h2>
       <div>
         <div className="form-group">
