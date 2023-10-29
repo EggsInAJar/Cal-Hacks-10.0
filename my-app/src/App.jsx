@@ -56,7 +56,6 @@ function App() {
     fetchData();
   }, [location]);
 
-
   const sampleData = [
     {
       name: 'The Fancy Fork',

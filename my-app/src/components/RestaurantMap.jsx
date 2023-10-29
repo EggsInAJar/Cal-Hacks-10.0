@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+<<<<<<< HEAD
 import './RestaurantMap.css'
+=======
+>>>>>>> main
 
 function MapComponent(props) {
   const [restaurants, setRestaurants] = useState([]);
@@ -74,7 +77,11 @@ function MapComponent(props) {
   }, [map]);
 
   return (
+<<<<<<< HEAD
       <div className="map" id="map"></div>
+=======
+    <div id="map" style={{width: '400px', height: '400px'}}></div>
+>>>>>>> main
   );
 }
 
