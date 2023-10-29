@@ -28,6 +28,17 @@ function App() {
   const [count, setCount] = useState(0)
   const [location, setLocation] = useState({})
 
+  const foods = ['🍕', '🍔', '🥗', '🍜', '🍦'];
+  const [currentFood, setCurrentFood] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentFood((prevFood) => (prevFood + 1) % foods.length);
+    }, 2000);  // Change food every 2 seconds
+
+    return () => clearInterval(timer);
+  }, []);
+
 
   useEffect(() => {
     // Get User Location
@@ -189,22 +200,27 @@ function App() {
       <Unauthenticated>
         <div className="unauthtitle">
           Eatinerary
-          <SignInButton>
-            <button className="signInButton">
-              Sign In
-            </button>
-          </SignInButton> 
-        <header className="App-header">
+        {/* <header className="App-header">
           <div className="logo">
             <div className="plate"></div>
             <div className="fork"></div>
             <div className="knife"></div>
           </div>
-        </header>
+        </header> */}
           {/* <header className="App-header">
             <img src="path-to-your-logo.png" className="App-logo" alt="Eatinerary Logo" />
           </header> */}
+           <div className="logo-container">
+            <div className="plate">
+              {foods[currentFood]}
+            </div>
+          </div>
         </div>
+        <SignInButton>
+          <button className="signInButton">
+            Sign In
+          </button>
+        </SignInButton> 
       </Unauthenticated>
 
       <Authenticated> 
