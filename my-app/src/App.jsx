@@ -198,7 +198,8 @@ function App() {
 
      <div className="App">
       <Unauthenticated>
-        <div className="unauthtitle">
+          <center>
+          <div className="unauthtitle">
           Eatinerary
         {/* <header className="App-header">
           <div className="logo">
@@ -221,6 +222,7 @@ function App() {
             Sign In
           </button>
         </SignInButton> 
+          </center>
       </Unauthenticated>
 
       <Authenticated> 

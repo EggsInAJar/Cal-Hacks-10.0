@@ -177,11 +177,11 @@ html, body {
 
 .signInButton {
   margin-top: 3vh;
-  margin-left: 32vw;
+  margin-left: 30vw;
   font-size: 24px;
   background-color: #799BD3;
   color: #024606;
-  text-align: right;
+  text-align: center;
   border-radius: 15%;
 }
 .signInButton:hover {
